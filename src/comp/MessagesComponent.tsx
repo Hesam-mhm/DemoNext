@@ -25,7 +25,7 @@ const MessagesComponent = ({summary,title,date}:MessagesComponentProps) => {
         {date}
         </Typography>
       </Stack>
-      <Divider variant='middle' />
+      <Divider variant='fullWidth' />
     </>
   )
 }

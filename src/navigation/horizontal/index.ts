@@ -13,6 +13,11 @@ const navigation = (): HorizontalNavItemsType => [
     icon: 'mdi:email-outline'
   },
   {
+    title: 'ماشین‌ها',
+    path: '/MachineDetail',
+    icon: 'mingcute:settings-1-fill'
+  },
+  {
     path: '/acl',
     action: 'read',
     subject: 'acl-page',
