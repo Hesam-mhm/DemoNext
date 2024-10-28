@@ -79,7 +79,7 @@ return times;
   ];
 
   return (
-      <ApexChart options={options} series={series} type="bar" height={300} />
+      <ApexChart options={options} series={series} type="bar" height={300} width={"100%"}/>
   );
 };
 
