@@ -20,9 +20,13 @@ export const SearchableSection: React.FC<SearchableSectionProps> = ({ onFilterCl
   const [productionLine, setProductionLine] = useState<ProductionLineType[] | []>([])
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
-
+  const [statusList,setStatusList] = useState<boolean[]>([])
   const { control } = useForm({ defaultValues: { search: '' } })
   const theme = useTheme()
+
+
+ 
+
 
   // Fetch production lines based on search or get all
   useEffect(() => {
@@ -41,7 +45,9 @@ export const SearchableSection: React.FC<SearchableSectionProps> = ({ onFilterCl
 
 
            setProductionLine(res.data.data as ProductionLineType[])
-        } else {
+           const statusList = res.data.data.map(() => Math.random() >= 0.5);
+           setStatusList(statusList)
+          } else {
           toast.error('مشکلی در ارتباط با سرور رخ داده است !')
         }
         setLoading(false)
@@ -145,7 +151,7 @@ export const SearchableSection: React.FC<SearchableSectionProps> = ({ onFilterCl
             <CircularProgress />
           </Stack>
         ) : productionLine.length ? (
-          productionLine.map(i => (
+          productionLine.map((i,index) => (
             <ProductionLineCardComponent
               timeLineData={generateRandomData("Machine 2", "2023-06-20 00:00", 6)}
               id={i.id!.toString()}
@@ -154,7 +160,7 @@ export const SearchableSection: React.FC<SearchableSectionProps> = ({ onFilterCl
               departmentName={i.name_persian!}
               machineCount={i.additional_fields!.machine_counts!}
               productionRate={25}
-              status='فعال'
+              status={statusList[index]}
             />
           ))
         ) : (

@@ -21,7 +21,7 @@ type MachineStatusData = {
 type ProductionLineCardComponentProps ={
   departmentName : string ,
   imageUrl: string
-  status : string ,
+  status : boolean ,
   machineCount : number ,
   productionRate : number ,
   timeLineData : MachineStatusData[] ,
@@ -86,7 +86,7 @@ const navigate =useRouter()
                         <Stack direction={"row"}>
 
                          <Typography fontWeight={400} fontSize={15} color={"#8d8d8d"}>وضعیت :</Typography>
-                         <Typography fontWeight={400} fontSize={15} color={"#00B051"}>{status}</Typography>
+                         <Typography fontWeight={400} fontSize={15} color={status?"#00B051":"red"}>{status?"فعال":"غیرفعال"}</Typography>
 
                         </Stack>
 
@@ -104,7 +104,7 @@ const navigate =useRouter()
 
             <div onClick ={()=>{navigate.push({
               pathname:"/ProductionLineDetail",
-              query:{id:id}
+              query:{id:id,name:departmentName}
             })}} >
               <Stack
               justifyContent={"center"}

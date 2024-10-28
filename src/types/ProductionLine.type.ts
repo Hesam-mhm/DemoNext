@@ -34,4 +34,35 @@ export type ProductionLineType = {
     time: string;                // Same as created_at, time of the log entry
     title: string;               // Title of the message, e.g., "AAA"
     updated_at: string;          // Last updated time, same format as created_at
+}  
+
+  export type SocketMessagesType =  {
+    entity_id: string;           // e.g., "sss"
+    entity_type: string;         // e.g., "machine"
+    message_type: string;        // e.g., "PM" for Preventive Maintenance
+    summary: string;             // Summary of the message, e.g., "AAA"
+    time: string;                // Same as created_at, time of the log entry
+    title: string;               // Title of the message, e.g., "AAA"
 }
+
+export type DepartmentType = {
+  additional_fields: {
+      image_name: string| null;
+      machine_counts: number| null;
+  }| null;
+  created_at: string| null; // You can use Date if you intend to parse it into a Date object
+  deleted_at: string | null;
+  id: number| null;
+  name_english: string| null;
+  name_persian: string| null;
+  updated_at: string | null; // Use Date if it will be parsed as a Date object
+}
+
+// {
+//   "title": "سرویس سیستم کشش نخ",
+//   "entity_type": "department",
+//   "entity_id": 3,
+//   "message_type": "PM",
+//   "time": "1403-08-06 14:30:28",
+//   "summary": "سیستم کشش نخ باید سرویس شود تا از بروز مشکلاتی مانند پارگی نخ و ناهماهنگی در تولید جلوگیری گردد و کیفیت نخ‌ها تضمین شود."
+// }

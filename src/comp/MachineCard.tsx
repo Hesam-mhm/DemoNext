@@ -18,7 +18,7 @@ type MachineDataPoint = {
 type MachineCardProps = {
       machineName :string,
       imageUrl:string ,
-      status : string ,
+      status : boolean ,
       timeLineData : MachineStatusData[]
 
 }
@@ -56,7 +56,7 @@ const MachineCard = ({machineName,status,timeLineData,imageUrl}:MachineCardProps
                     <Typography fontSize={16} fontWeight={400} color={"#555555"} >{machineName}</Typography>
                     <Stack  direction={"row"}>
                     <Typography fontSize={16} fontWeight={400} color={"#555555"} >وضعیت   :</Typography>
-                    <Typography fontSize={16} fontWeight={400} color={"#00B051"} >{status}</Typography>
+                    <Typography fontSize={16} fontWeight={400} color={status?"#00B051":"red"} >{status?"فعال":"غیرفعال"}</Typography>
                     </Stack>
               </Stack>
         </Stack>
