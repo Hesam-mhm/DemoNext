@@ -112,7 +112,7 @@ const TimelineChart = ({machinesData}:TimelineChartType) => {
   };
 
   return (
-        <ApexChart options={options} series={data} type="rangeBar" height={84}  width={"100%"}/>
+        <ApexChart options={options} series={data} type="rangeBar" height={84}  width="100%"/>
   );
 };
 

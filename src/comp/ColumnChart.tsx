@@ -7,23 +7,11 @@ const ApexChart = dynamic(() => import('react-apexcharts'), { ssr: false })
 
 moment.locale('fa', { useGregorianParser: false })
 
-const ColumnChart: React.FC = () => {
-  const [series] = React.useState([
-    {
-      name: 'شیفت 1',
-      data: [44, 55, 57, 56, 61, 58, 63]
-    },
-    {
-      name: 'شیفت 3',
-      data: [76, 85, 101, 98, 87, 105, 91]
-    },
-    {
-      name: 'شیفت 2',
-      data: [35, 41, 36, 26, 45, 48, 52]
-    }
-  ])
+type ColumnChartProp = {
+  series: any
+}
 
-  // Generate the last 7 days in Jalali format
+const ColumnChart: React.FC<ColumnChartProp> = ({ series }) => {
   const getLast7DaysJalali = () => {
     return Array.from({ length: 7 }, (_, i) => moment().subtract(i, 'days').format('jD jMMMM')).reverse()
   }
@@ -56,12 +44,16 @@ const ColumnChart: React.FC = () => {
       colors: ['transparent']
     },
     xaxis: {
-      categories: getLast7DaysJalali()
+      categories: getLast7DaysJalali(),
+      labels: {
+        style: { fontFamily: 'vazir', fontSize: '14px' }
+      }
     },
     yaxis: {
       title: {
-        offsetX: -20,
-        text: 'نرخ تولید'
+        offsetX: -40,
+        text: 'نرخ تولید',
+        style: { fontFamily: 'vazir', fontSize: '14px' }
       }
     },
     fill: {
@@ -79,7 +71,6 @@ const ColumnChart: React.FC = () => {
       <div id='chart'>
         <ApexChart options={options} series={series} type='bar' height={350} />
       </div>
-      <div id='html-dist'></div>
     </div>
   )
 }

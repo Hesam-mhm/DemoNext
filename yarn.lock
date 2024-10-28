@@ -1237,6 +1237,11 @@
   dependencies:
     "@types/react" "*"
 
+"@types/clone@^2.1.4":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@types/clone/-/clone-2.1.4.tgz#9680f886c935dcf596273f1218abb71efb01531a"
+  integrity sha512-NKRWaEGaVGVLnGLB2GazvDaZnyweW9FJLLFL5LhywGJB3aqGMT9R/EUoJoSRP4nzofYnZysuDmrEJtJdAqUOtQ==
+
 "@types/d3-color@^2":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/d3-color/-/d3-color-2.0.3.tgz#8bc4589073c80e33d126345542f588056511fe82"
@@ -1631,6 +1636,36 @@ acorn@^8.8.0:
   version "8.8.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.8.1.tgz#0a3f9cbecc4ec3bea6f0a80b66ae8dd2da250b73"
   integrity sha512-7zFpHzhnqYKrkYdUjF1HI1bzd0VygEGX8lFk4k5zVMqHEoES+P+7TKI+EvLO9WVMJ8eekdO0aDEK044xTXwPPA==
+
+ag-charts-community@10.3.0:
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/ag-charts-community/-/ag-charts-community-10.3.0.tgz#282180ba9ffa27b5dc9020817570e48635a224e4"
+  integrity sha512-Q4gxyzVgBArAAch4fnrOqpq+BmAMBwXYOK8qTrc2QzjOYMeEh6PHhvOuY5uTORtKl9kDpTrBrh49Yq3YTsn4Jw==
+  dependencies:
+    ag-charts-locale "10.3.0"
+    ag-charts-types "10.3.0"
+
+ag-charts-enterprise@^10.3.0:
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/ag-charts-enterprise/-/ag-charts-enterprise-10.3.0.tgz#7de3147a5d8cfdade0cc5642796e282454308a27"
+  integrity sha512-IrLsZSPGSxYDtT8ITzHMjm0eyQZFSlpWf+bzYZGi05NeCBcg1asRJi22SqJAB4HeBIocXWTUuMoAvyn3Ha+GBA==
+  dependencies:
+    ag-charts-community "10.3.0"
+
+ag-charts-locale@10.3.0:
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/ag-charts-locale/-/ag-charts-locale-10.3.0.tgz#956bc1d9d2bf5654954e07c78b6b5d149a821b79"
+  integrity sha512-Xy+QnSnxPLO0PaVngWKU/PT7wC7SuxcGZjeLgPawyAlBTnn430olUYbK7t1Yn/Gc8doTz6Pvw34nlvpKyWfSQg==
+
+ag-charts-react@^10.3.0:
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/ag-charts-react/-/ag-charts-react-10.3.0.tgz#89c60581b31533057974339898ef62d011d2e6fc"
+  integrity sha512-ZQQnxHNmKmUm3vofFNC1dr1ZU3PpjIaxirwu7AGVjXw63kVzzH9RVFo/tmGzqOa6bi/qgb6QlEnbpEqEd/HJrg==
+
+ag-charts-types@10.3.0:
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/ag-charts-types/-/ag-charts-types-10.3.0.tgz#66f29cab43a544269ea278ea7a860904bf283306"
+  integrity sha512-6nIwJmp/9JMMo4SsWZPcaYqlhN0Tzg3SmY2v+NXmfO4jjBSp8vJs3bDpPTpNtzutrmAMimGzQV31YSwq+K3bRQ==
 
 ajv@^6.10.0, ajv@^6.12.4:
   version "6.12.6"
