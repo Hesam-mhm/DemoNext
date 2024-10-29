@@ -114,7 +114,7 @@ const App = (props: ExtendedAppProps) => {
 
   const authGuard = Component.authGuard ?? true
 
-  const guestGuard = Component.guestGuard ?? false
+  const guestGuard = Component.guestGuard ?? true
 
   const aclAbilities = Component.acl ?? defaultACLObj
 
