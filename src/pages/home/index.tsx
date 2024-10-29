@@ -131,7 +131,7 @@ const Home = () => {
 
 
       {/* Left side */}
-      <Grid   item container lg={8} md={12} sm={12} xs={12} > 
+      <Grid   item container lg={8} md={12} sm={12} xs={12} height={936}> 
 
 
                   {/* کارخانه در یک نگاه */}

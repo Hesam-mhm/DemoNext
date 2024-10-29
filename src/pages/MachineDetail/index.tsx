@@ -31,17 +31,13 @@ const MachineDetail = () => {
 
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [productionCapacity ,setProductionCapacity]= useState<number>(0)
-  const [machinesList, setMachinesList] = useState<MachineType[]>([])
-  const [alertList, setAlertList] = useState<MessagesType[]>([])
-  const [messageList, setMessageList] = useState<MessagesType[]>([])
   const [columnList, setColumnList] = useState<ShiftDataType[]>([])
-  const [gaugeData, setGaugeData] = useState<GaugeDataType>({energy:84,oee:81,quality:74,rate:56})
   const [machineDetailLoading, setMachineDetailLoading] = useState<boolean>(false)
   const [machineDetail, setMachineDetail] = useState<MachineDetailType>()
   const [pmMessages, setPmMessages] = useState<SocketMessagesType[]>([])
   const [aIMessages, setAiMessages] = useState<SocketMessagesType[]>([])
   const [machineData,setMachineData]= useState<MachineSocketDataType>({
-    data:{oee:70 ,production_quality:70,production_rate:70,status:0,energy_usage:70},
+    data:{oee:93 ,production_quality:82,production_rate:76,status:0,energy_usage:74},
     machine_id:0
       })
   
@@ -123,7 +119,6 @@ useEffect(() => {
     if (receivedData.machine_id?.toString() === id) {
       
       setMachineData(receivedData); 
-      setGaugeData({energy:receivedData.data.energy_usage! ,oee:receivedData.data.oee! ,quality:receivedData.data.production_quality!,rate:receivedData.data.production_rate!})
     }
   }
 
@@ -379,7 +374,7 @@ useEffect(() => {
                     border: theme => `1px solid ${theme.palette.divider}`
                   }}
                 >
-                  <GaugeChart value={gaugeData.oee} lable='OEE'  min={0} max={100}/>
+                  <GaugeChart value={machineData!.data!.oee!} lable='OEE'  min={0} max={100}/>
                 </Card>
               </Grid>
               <Grid item lg={6} xs={12}>
@@ -395,7 +390,7 @@ useEffect(() => {
                     border: theme => `1px solid ${theme.palette.divider}`
                   }}
                 >
-                  <GaugeChart value={gaugeData.quality} lable='کیفیت تولید'  min={0} max={100}/>
+                  <GaugeChart value={machineData!.data!.production_quality!} lable='کیفیت تولید'  min={0} max={100}/>
                 </Card>
               </Grid>
             </Grid>
@@ -413,7 +408,7 @@ useEffect(() => {
                     border: theme => `1px solid ${theme.palette.divider}`
                   }}
                 >
-                  <GaugeChart value={gaugeData.rate} lable='نرخ تولید' withPercentage={false} min={0} max={250}/>
+                  <GaugeChart value={machineData!.data!.production_rate!} lable='نرخ تولید' withPercentage={false} min={0} max={100}/>
                 </Card>
               </Grid>
               <Grid item lg={6} xs={12}>
@@ -429,7 +424,7 @@ useEffect(() => {
                     border: theme => `1px solid ${theme.palette.divider}`
                   }}
                 >
-                  <GaugeChart value={gaugeData.energy} lable='مصرف انرژی' min={0} max={100}/>
+                  <GaugeChart value={machineData!.data!.energy_usage!} lable='مصرف انرژی' min={0} max={100}/>
                 </Card>
               </Grid>
             </Grid>

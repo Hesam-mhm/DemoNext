@@ -353,7 +353,7 @@ useEffect(() => {
           {/* Machines List */}
         <Grid p={2} item lg={6} xs={12} direction={'column'}>
           <Card sx={{ borderRadius: '8px', height: 444 }}>
-          <Stack sx={{height: 410 }} p={4}>
+          <Stack sx={{height: 440 }} p={4}>
               <Stack direction={'row'} my={2}>
                 <Icon icon={'mingcute:settings-1-line'} fontSize={20} fontWeight={500} />
                 <Typography fontWeight={500} fontSize={14} color={'#1c1c1c'} ml={2}>
