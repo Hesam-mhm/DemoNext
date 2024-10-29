@@ -45,6 +45,73 @@ const MachineDetail = () => {
     machine_id:0
       })
   
+
+
+////fetch pm Messages socket Data
+useEffect(() => {
+        
+  function onConnect() {
+      setIsConnected(true);
+  }
+
+  function onDataReceived(receivedData: SocketMessagesType) {
+      console.log(receivedData);
+      console.log(socket.on);
+      if(receivedData.entity_id !== id){
+
+        setPmMessages((prev)=>[...prev,receivedData]); 
+      }
+    }
+
+  function onDisconnect() {
+      setIsConnected(false);
+  }
+
+  socket.on("connect", onConnect);
+  socket.on("machine_pm", onDataReceived);
+  socket.on("disconnect", onDisconnect);
+  socket.connect();
+
+  return () => {
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+      socket.disconnect();
+  };
+}, []);
+
+////fetch Ai Messages socket Data
+useEffect(() => {
+        
+  function onConnect() {
+      setIsConnected(true);
+  }
+
+  function onDataReceived(receivedData: SocketMessagesType) {
+      console.log(receivedData);
+      console.log(socket.on);
+      if(receivedData.entity_id !== id){
+
+        setAiMessages((prev)=>[...prev,receivedData]); 
+      }
+    }
+
+  function onDisconnect() {
+      setIsConnected(false);
+  }
+
+  socket.on("connect", onConnect);
+  socket.on("machine_ai", onDataReceived);
+  socket.on("disconnect", onDisconnect);
+  socket.connect();
+
+  return () => {
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+      socket.disconnect();
+  };
+}, []);
+
+
 // fetch department socket data
 useEffect(() => {
         
@@ -171,69 +238,7 @@ useEffect(() => {
     }
   }
 
-////fetch pm Messages socket Data
-useEffect(() => {
-        
-  function onConnect() {
-      setIsConnected(true);
-  }
 
-  function onDataReceived(receivedData: SocketMessagesType) {
-      console.log(receivedData);
-      console.log(socket.on);
-      if(receivedData.entity_id !== id){
-
-        setPmMessages((prev)=>[...prev,receivedData]); 
-      }
-    }
-
-  function onDisconnect() {
-      setIsConnected(false);
-  }
-
-  socket.on("connect", onConnect);
-  socket.on("machine_pm", onDataReceived);
-  socket.on("disconnect", onDisconnect);
-  socket.connect();
-
-  return () => {
-      socket.off("connect", onConnect);
-      socket.off("disconnect", onDisconnect);
-      socket.disconnect();
-  };
-}, []);
-
-////fetch Ai Messages socket Data
-useEffect(() => {
-        
-  function onConnect() {
-      setIsConnected(true);
-  }
-
-  function onDataReceived(receivedData: SocketMessagesType) {
-      console.log(receivedData);
-      console.log(socket.on);
-      if(receivedData.entity_id !== id){
-
-        setAiMessages((prev)=>[...prev,receivedData]); 
-      }
-    }
-
-  function onDisconnect() {
-      setIsConnected(false);
-  }
-
-  socket.on("connect", onConnect);
-  socket.on("machine_ai", onDataReceived);
-  socket.on("disconnect", onDisconnect);
-  socket.connect();
-
-  return () => {
-      socket.off("connect", onConnect);
-      socket.off("disconnect", onDisconnect);
-      socket.disconnect();
-  };
-}, []);
 
   return (
     <Grid container height={'100%'}>
@@ -497,7 +502,7 @@ useEffect(() => {
                       summary={message.summary}
                       title={message.title}
                     />
-                  ))
+                  )).reverse()
                 ) : (
                   <Typography>پیامی وجود ندارد!</Typography>
                 )}
@@ -531,7 +536,7 @@ useEffect(() => {
                   aIMessages.map((alert, index) => (
                     <MessagesComponent animate={true} key={index} date={alert.time} summary={alert.summary} title={alert.title} />
                   ))
-                ) : (
+                ).reverse() : (
                   <Typography>هشداری وجود ندارد!</Typography>
                 )}
               </Box>

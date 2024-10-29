@@ -81,6 +81,7 @@ export const SearchableSection: React.FC<SearchableSectionProps> = ({ onFilterCl
     <Stack sx={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <Box
         sx={{
+          p:2,
           borderRadius: '0px',
           backgroundColor: theme.palette.background.paper,
           alignItems: 'center'
@@ -133,7 +134,7 @@ export const SearchableSection: React.FC<SearchableSectionProps> = ({ onFilterCl
         </FormControl>
       </Box>
 
-      <Stack direction={'row'} mb={2}>
+      <Stack direction={'row'} mb={2} ml={3}>
         <Icon icon={'quill:stack-alt'} fontSize={20} fontWeight={500} />
         <Typography fontWeight={500} fontSize={14} color={'#1c1c1c'} ml={2}>
           خط های تولید

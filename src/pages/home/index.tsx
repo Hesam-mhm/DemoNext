@@ -113,35 +113,37 @@ const Home = () => {
   },[])
 
 
-
+ 
   return (
-    <Grid container>
+    <Grid container height={'100%'}>
 
       {/* Right Side */}
-      <Grid m={2} item lg={3.9} md={12} sm={12} p={4} xs={12}component={Card}
-        sx={{  backgroundColor: 'white',  height: 936, 
-          display: 'flex',  flexDirection: 'column', overflow: 'hidden'  // Prevent overflow from affecting the layout
-          }}>
+      <Grid p={2} item lg={4} md={12} sm={12}  xs={12} >
+      <Card  
+      sx={{ p:3 , backgroundColor: 'white',  height: 936, 
+      display: 'flex',  flexDirection: 'column', overflow: 'hidden'  // Prevent overflow from affecting the layout
+      }}>
+
         <SearchableSection />
+      </Card>
+
       </Grid>
 
 
       {/* Left side */}
-      <Grid p={2} m={2} item container lg={7.8} md={12} sm={12} xs={12} component={Card} sx={{
-          backgroundColor: 'white' }}>
+      <Grid   item container lg={8} md={12} sm={12} xs={12} > 
 
 
-            
                   {/* کارخانه در یک نگاه */}
-                  <Grid m={2} item lg={4.4} md={12} sm={12} xs={12} component={Stack} 
-                  p={4}
+                  <Grid p={2} item lg={4} md={12} sm={12} xs={12} >
+                    <Card  sx={{p:4, backgroundColor: 'white' ,height:520}} >
+
+                  <Stack   p={4} height={"100%"}
                   direction={"column"}
-                  sx={{ border: '2px solid ',borderColor:"#4c4e641f",borderRadius : "8px",height:468}}
+                  sx={{ border: '2px solid ',borderColor:"#4c4e641f",borderRadius : "8px",}}
                   >
 
-
-
-                      <Stack direction={"row"} my={2}>
+                  <Stack direction={"row"} my={2}>
                         <Icon icon={"lucide:factory"} fontSize={20} fontWeight={500}/>
                         <Typography fontWeight={500} fontSize={14} color={"#1c1c1c"} ml={2}>
                                 کارخانه در یک نگاه
@@ -159,14 +161,25 @@ const Home = () => {
               
 
 
+                  </Stack>
+               
+                  </Card>
+
+
+
+
 
 
                   </Grid>
 
                   {/* پیام‌های تعمیر و نگهداری */}
-                    <Grid m={2} item lg={7.25} xs={12} component={Stack} direction={"column"} p={4}
-                    sx={{ border: '2px solid ',borderColor:"#4c4e641f",borderRadius : "8px", height: 468 }}
+                    <Grid p={2} item lg={8} md={12} sm={12} xs={12} 
                     >
+
+ 
+                          <Card sx={{ height :520, backgroundColor: 'white',p:4}} >
+                          <Stack direction={"column"} 
+                    sx={{p:4, border: '2px solid ',borderColor:"#4c4e641f",borderRadius : "8px", height: "100%" }} >
                         <Stack direction={"row"} my={2}>
                           <Icon icon={"mingcute:settings-1-line"} fontSize={20} fontWeight={500}/>
                           <Typography fontWeight={500} fontSize={14} color={"#1c1c1c"} ml={2}>
@@ -219,17 +232,18 @@ const Home = () => {
                       
 
                       </Box>
+                      </Stack>
+                      </Card>
 
 
 
                     </Grid>
 
                   {/*نمودار نرخ تولید در ۲۴ ساعت گذشته */}
-                <Grid m={2} item lg={12} md={12} sm={12} xs={12} component={Stack}
-                direction={"column"}
-                 sx={{ border: '2px solid ',borderColor:"#4c4e641f",borderRadius : "8px", height: 396 }} p={4}
-                >
-                     <Stack direction={"row"} my={2}>
+                <Grid p={2} item lg={12} md={12} sm={12} xs={12} >
+                <Card  sx={{p:4, backgroundColor: 'white' ,height:396}} >
+                  <Stack sx={{ border: '2px solid ',borderColor:"#4c4e641f",borderRadius : "8px", height:"100%"  }} p={4} >
+                  <Stack direction={"row"} my={2}>
                       <Icon icon={"mynaui:line-chart-square"} fontSize={20} fontWeight={500}/>
                       <Typography fontWeight={500} fontSize={14} color={"#1c1c1c"} ml={2}>
                       نمودار نرخ تولید در ۲۴ ساعت گذشته
@@ -246,9 +260,21 @@ const Home = () => {
                 }
               ]}
                 />
+                  </Stack>
+
+                </Card>
+                 
+                
+
 
                 </Grid>
+
+
+
       </Grid>
+
+            
+
 
     </Grid>
   )

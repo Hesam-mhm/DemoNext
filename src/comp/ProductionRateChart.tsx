@@ -61,6 +61,7 @@ return times;
     xaxis: {
       title: {
         offsetX: 0,
+        offsetY: -20,
         text: 'زمان',
         style: { fontFamily: 'vazir', fontSize: '14px',fontWeight:400 }
       },
