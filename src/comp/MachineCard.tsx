@@ -1,6 +1,8 @@
 import { Stack, Typography } from '@mui/material';
 import React from 'react';
 import TimelineChart from './timeLineChart';
+import { Icon } from '@iconify/react';
+import { useRouter } from 'next/router';
 
 type MachineDataPoint = {
       x: string;
@@ -19,11 +21,16 @@ type MachineCardProps = {
       machineName :string,
       imageUrl:string ,
       status : boolean ,
-      timeLineData : MachineStatusData[]
+      timeLineData : MachineStatusData[],
+      id: string
 
 }
 
-const MachineCard = ({machineName,status,timeLineData,imageUrl}:MachineCardProps) => {
+const MachineCard = ({machineName,status,timeLineData,imageUrl,id}:MachineCardProps) => {
+
+
+const navigate = useRouter()
+
     return (
         <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"} sx={{ border: '2px solid ', borderColor: '#4c4e641f', borderRadius: '8px', height: 132 }} p={4} m={2}>
                   
@@ -64,7 +71,28 @@ const MachineCard = ({machineName,status,timeLineData,imageUrl}:MachineCardProps
               <TimelineChart 
               machinesData={timeLineData}
               />
-
+              
+            <div onClick ={()=>{navigate.push({
+              pathname:"/MachineDetail",
+              query:{id:id }
+            })}} >
+              <Stack
+              justifyContent={"center"}
+              alignItems={"center"}
+              sx={{
+                height:100 ,
+                width : 30,
+                borderRadius:"8px",
+                border:"1px solid" ,
+                borderColor:"#e2e2e2",
+                ":hover" :{
+                  bgcolor:"#FFF5E7"
+                }
+              }}
+              >
+               <Icon icon={"formkit:left"} />
+              </Stack>
+            </div>
       </Stack>
     );
 };

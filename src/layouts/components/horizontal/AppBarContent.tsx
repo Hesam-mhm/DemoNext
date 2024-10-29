@@ -12,14 +12,17 @@ interface Props {
   settings: Settings
   saveSettings: (values: Settings) => void
 }
-const AppBarContent = (props: Props) => {
+const AppBarContent = (
+  props: Props
+) => {
   // ** Props
-  const { settings, saveSettings } = props
+  const { settings, saveSettings } = 
+  props
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <ModeToggler settings={settings} saveSettings={saveSettings} />
-      <UserDropdown settings={settings} />
+      {/* <ModeToggler settings={settings} saveSettings={saveSettings} /> */}
+      {/* <UserDropdown settings={settings} /> */}
     </Box>
   )
 }

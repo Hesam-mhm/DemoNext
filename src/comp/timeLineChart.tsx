@@ -5,16 +5,9 @@ import dynamic from "next/dynamic";
 // Dynamically import the ApexCharts component to prevent SSR
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-interface ChartDataPoint {
-  x: string;
-  y: [number, number];
-  fillColor: string;
-}
 
-interface ChartSeries {
-  name: string;
-  data: ChartDataPoint[];
-}
+
+
 
 type MachineDataPoint = {
   x: string;

@@ -13,6 +13,8 @@ export type ProductionLineType = {
   export interface MachineType {
     additional_fields: { image_name: string | null} | null;
     brand: string | null;
+    id: number | null;
+    department_id: number | null;
     department_name: string | null;
     is_machine: boolean | null;
     machine_subtype: string | null;
@@ -57,6 +59,53 @@ export type DepartmentType = {
   name_persian: string| null;
   updated_at: string | null; // Use Date if it will be parsed as a Date object
 }
+
+export interface MachineDetailType {
+  additional_fields: {
+      image_name: string| null;
+  }| null;
+  brand: string| null;
+  department_id: number| null;
+  department_name: string| null;
+  id: number| null;
+  is_machine: boolean| null;
+  machine_subtype: string| null;
+  machine_subtype_id: number| null;
+  machine_type: string| null;
+  made_on: string| null;
+  name: string| null;
+  unchanged_fields: null | any; // Specify the type if you know the structure of unchanged_fields
+}
+
+export type CompanyData = {
+  oee: number| null;
+  active_machines: number| null;
+  production_rate: number| null;
+  production_quality: number| null;
+};
+
+export type DepartmentSocketDataType = {
+  department_id: number| null;
+  data: {
+    status: number| null;
+    oee: number| null;
+    production_rate: number| null;
+    production_quality: number| null;
+  };
+};
+
+
+export type MachineSocketDataType = {
+  machine_id: number| null;
+  data: {
+    status: number| null;
+    oee: number| null;
+    production_rate: number| null;
+    production_quality: number| null;
+    energy_usage: number| null;
+  };
+};
+
 
 // {
 //   "title": "سرویس سیستم کشش نخ",

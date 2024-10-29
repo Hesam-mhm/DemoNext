@@ -4,7 +4,15 @@ import dynamic from "next/dynamic";
 // Dynamically import the ApexCharts component to prevent SSR
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const ProductionRateChart: React.FC = () => {
+type ProductionRateChartProps = {
+  series: {
+    name: string;
+    data: number[];
+}[]
+}
+
+
+const ProductionRateChart = ({series}:ProductionRateChartProps) => {
   const generateTimeLabels = () => {
     const times = [];
     for (let hour = 0; hour < 24; hour++) {
@@ -51,6 +59,11 @@ return times;
       },
     },
     xaxis: {
+      title: {
+        offsetX: 0,
+        text: 'زمان',
+        style: { fontFamily: 'vazir', fontSize: '14px',fontWeight:400 }
+      },
       categories: generateTimeLabels(), // Generate time intervals
       labels: {
         show: false,
@@ -61,22 +74,28 @@ return times;
         },
       },
     },
-    
+    yaxis: {
+      title: {
+        offsetX: -60,
+        text: 'نرخ تولید',
+        style: { fontFamily: 'vazir', fontSize: '14px',fontWeight:400 }
+      }
+    },
     tooltip: {
       y: {
         formatter: (val) => `${val}`,
       },
+      
     },
 
-    
   };
 
-  const series = [
-    {
-      name: 'Rate',
-      data: [20, 40, 30, 50, 70, 60, 50, 40, 30, 60, 70, 90, 80, 70, 60, 40, 30, 50, 70, 80, 60, 50, 30, 40, 50, 60, 40, 50, 70, 60, 40, 50, 30, 50, 40, 60, 70, 50, 60, 70, 40, 60, 50, 70, 80, 60, 70, 50], // Example data
-    },
-  ];
+  // const series = [
+  //   {
+  //     name: 'Rate',
+  //     data: [20, 40, 30, 50, 70, 60, 50, 40, 30, 60, 70, 90, 80, 70, 60, 40, 30, 50, 70, 80, 60, 50, 30, 40, 50, 60, 40, 50, 70, 60, 40, 50, 30, 50, 40, 60, 70, 50, 60, 70, 40, 60, 50, 70, 80, 60, 70, 50], // Example data
+  //   },
+  // ];
 
   return (
       <ApexChart options={options} series={series} type="bar" height={300} width={"100%"}/>

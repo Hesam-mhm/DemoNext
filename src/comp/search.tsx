@@ -21,6 +21,8 @@ export const SearchableSection: React.FC<SearchableSectionProps> = ({ onFilterCl
   const [searchQuery, setSearchQuery] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
   const [statusList,setStatusList] = useState<boolean[]>([])
+  const [productionRateList,setProductionRateList] = useState<number[]>([])
+
   const { control } = useForm({ defaultValues: { search: '' } })
   const theme = useTheme()
 
@@ -47,6 +49,9 @@ export const SearchableSection: React.FC<SearchableSectionProps> = ({ onFilterCl
            setProductionLine(res.data.data as ProductionLineType[])
            const statusList = res.data.data.map(() => Math.random() >= 0.5);
            setStatusList(statusList)
+
+           const prRateList = res.data.data.map(()=> Math.floor(Math.random() * (100 - 70 + 1)) + 70)
+           setProductionRateList(prRateList)
           } else {
           toast.error('مشکلی در ارتباط با سرور رخ داده است !')
         }
@@ -110,12 +115,12 @@ export const SearchableSection: React.FC<SearchableSectionProps> = ({ onFilterCl
                       }}
                     >
                       <Divider sx={{ mx: '12px' }} orientation='vertical' variant='fullWidth' flexItem />
-                      <Icon icon={'hugeicons:filter'} fontSize={17} color={theme.palette.grey?.[700]} />
-                      <Typography
+                      <Icon icon={'icon-park-outline:sort-two'} fontSize={17} color={theme.palette.grey?.[700]} />
+                      {/* <Typography
                         sx={{ ml: '12px', fontSize: '14px', fontWeight: '400', color: theme.palette.grey?.[400] }}
                       >
                         فیلتر
-                      </Typography>
+                      </Typography> */}
                     </Box>
                   ) : null
                 }}
@@ -159,7 +164,7 @@ export const SearchableSection: React.FC<SearchableSectionProps> = ({ onFilterCl
               imageUrl={i.additional_fields!.image_name!}
               departmentName={i.name_persian!}
               machineCount={i.additional_fields!.machine_counts!}
-              productionRate={25}
+              productionRate={productionRateList[index]}
               status={statusList[index]}
             />
           ))

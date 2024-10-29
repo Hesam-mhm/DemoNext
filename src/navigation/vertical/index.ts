@@ -3,23 +3,26 @@ import { VerticalNavItemsType } from 'src/@core/layouts/types'
 
 const navigation = (): VerticalNavItemsType => {
   return [
-    {
-      title: 'Home',
-      path: '/home',
-      icon: 'mdi:home-outline',
-    },
-    {
-      title: 'Second Page',
-      path: '/second-page',
-      icon: 'mdi:email-outline',
-    },
-    {
-      path: '/acl',
-      action: 'read',
-      subject: 'acl-page',
-      title: 'Access Control',
-      icon: 'mdi:shield-outline',
-    }
+  {
+    title: 'داشبورد',
+    path: '/home',
+    icon: 'cuida:dashboard-outline',
+  },
+  {
+    title: 'خط تولید',
+    path: '/ProductionLineDetail',
+    icon: 'basil:stack-solid',
+    disabled :true,
+    
+
+  },
+  {
+    title: 'ماشین‌ها',
+    path: '/MachineDetail',
+    icon: 'mingcute:settings-1-fill',
+    disabled :true
+
+  }
   ]
 }
 

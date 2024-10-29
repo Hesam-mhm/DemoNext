@@ -13,7 +13,7 @@ import MachineCard from 'src/comp/MachineCard'
 import MessagesComponent from 'src/comp/MessagesComponent'
 import { socket } from 'src/configs/mqttConfig'
 import generateRandomData from 'src/helper/dateGenerator'
-import { MachineType, DepartmentType, MessagesType, SocketMessagesType } from 'src/types/ProductionLine.type'
+import { MachineType, DepartmentType, MessagesType, SocketMessagesType, DepartmentSocketDataType } from 'src/types/ProductionLine.type'
 
 const ProductionLineDetail = () => {
   const{id} = useRouter().query 
@@ -33,6 +33,12 @@ const ProductionLineDetail = () => {
   const [randomArrayForCartCharts ,setRandomArrayForCartCharts] = useState<number[]>([0,0,0,0,0,0,0])
   const [randomArrayForCartCharts2 ,setRandomArrayForCartCharts2] = useState<number[]>([0,0,0,0,0,0,0])
   const [statusList,setStatusList] = useState<boolean[]>([])
+  const [departmentData,setDepartmentData]= useState<DepartmentSocketDataType>({
+data:{oee:70 ,production_quality:77,production_rate:70,status:0},
+department_id:0
+  })
+
+
 
   function generateRandomArray() {
     const array :number[] = [];
@@ -146,6 +152,36 @@ useEffect(() => {
   fetchMessages()
 }, [id])
 
+
+// fetch department socket data
+useEffect(() => {
+        
+  function onConnect() {
+      setIsConnected(true);
+  }
+
+  function onDataReceived(receivedData: DepartmentSocketDataType) {
+    if (receivedData.department_id?.toString() === id) {
+      
+      setDepartmentData(receivedData); 
+    }
+  }
+
+  function onDisconnect() {
+      setIsConnected(false);
+  }
+
+  socket.on("connect", onConnect);
+  socket.on("department_data", onDataReceived);
+  socket.on("disconnect", onDisconnect);
+  socket.connect();
+
+  return () => {
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+      socket.disconnect();
+  };
+}, [id]);
 
 ////fetch pm Messages socket Data
 useEffect(() => {
@@ -267,13 +303,18 @@ useEffect(() => {
  
                <Divider variant='fullWidth' sx={{ borderWidth: '1px' }} />
  
-               <CardRows title={'وضعیت'} value={'فعال'} color='#00B051' bgColor='#DFF5E9' />
-               <CardRows title={'تعداد ماشین'} value={'4'} color='' bgColor='' />
-               <CardRows title={'OEE'} value={'58%'} color='#00B051' bgColor='#DFF5E9' />
-               <CardRows title='نرخ تولید' value={productionRate!.toString()} color={productionRate! > 70 && productionRate! <75 ? "#FF9600" : "#00B051"} bgColor={productionRate! > 75 && productionRate! <80 ? "#FFF5E7" : "#DFF5E9"}/>
+               <CardRows title={'وضعیت'} value={departmentData.data.status ===1 ?'فعال':"غیرفعال"} color={departmentData.data.status ===1 ?'#00B051' :"red" } bgColor={departmentData.data.status ===1 ?'#DFF5E9' : "#FFDFDF"} />
+               <CardRows title={'تعداد ماشین'} 
+               value={
+                id==="1" ? '4' :
+                id==="3" ? '5' :
+                '3'
+               } color='' bgColor='#e2e2e2' />
+               <CardRows title='OEE'  value={`${departmentData!.data!.oee!}%`} color={departmentData!.data!.oee! > 70 && departmentData!.data!.oee! <75 ? "#FF9600" : "#00B051"} bgColor={departmentData!.data!.oee! > 70 && departmentData!.data!.oee! <75 ? "#FFF5E7" : "#DFF5E9"}/>
+               <CardRows title='نرخ تولید' value={departmentData!.data!.production_rate!.toString()} color={departmentData!.data!.production_rate! > 70 && departmentData!.data!.production_rate! <75 ? "#FF9600" : "#00B051"} bgColor={departmentData!.data!.production_rate! > 70 && departmentData!.data!.production_rate! <75 ? "#FFF5E7" : "#DFF5E9"}/>
                <CardRows title={'ظرفیت تولید'} value={productionCapacity.toString()} color='#00B051' bgColor='#DFF5E9' />
-               <CardRows title={'کیفیت تولید'} value={'75%'} color='#FF9600' bgColor='#FFF5E7' />
-             </Stack>
+               <CardRows title='کیفیت تولید' value={`${departmentData!.data.production_quality}%`} color={departmentData!.data.production_quality! > 70 && departmentData!.data!.production_quality! <75 ? "#FF9600" : "#00B051"} bgColor={departmentData!.data.production_quality! > 70 && departmentData!.data.production_quality! <75 ? "#FFF5E7" : "#DFF5E9"}/>
+               </Stack>
            </Stack>
           }
 
@@ -337,6 +378,7 @@ useEffect(() => {
                 machinesList.length ? machinesList.map((i,index)=>{
 
                   return <MachineCard 
+                  id={i.id!.toString()}
                   key={i.name}
                   imageUrl={i.additional_fields!.image_name!}
                   timeLineData={generateRandomData("Machine 2", "2023-06-20 00:00", 6)}
@@ -432,7 +474,7 @@ useEffect(() => {
               <Stack direction={'row'} my={2}>
                 <Icon icon={'tdesign:notification'} fontSize={20} fontWeight={500} />
                 <Typography fontWeight={500} fontSize={14} color={'#1c1c1c'} ml={2}>
-                  هشدارها
+                هشدارهای پیش‌بینی‌کننده
                 </Typography>
               </Stack>
               <Divider variant='fullWidth' sx={{ borderWidth: '1px' }} />
