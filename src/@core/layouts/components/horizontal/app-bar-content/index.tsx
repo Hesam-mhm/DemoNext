@@ -4,12 +4,14 @@ import Image from 'next/image'
 
 // ** MUI Imports
 import Box from '@mui/material/Box'
-import { styled } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import { styled, useTheme } from '@mui/material/styles'
 
 // ** Type Import
 import { LayoutProps } from 'src/@core/layouts/types'
 
 // ** Theme Config Import
+import themeConfig from 'src/configs/themeConfig'
 
 interface Props {
   hidden: LayoutProps['hidden']
