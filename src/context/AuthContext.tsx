@@ -39,38 +39,17 @@ const AuthProvider = ({ children }: Props) => {
   const router = useRouter()
 
   useEffect(() => {
-    const initAuth = async (): Promise<void> => {
-      const storedToken = window.localStorage.getItem(authConfig.storageTokenKeyName)!
-      if (storedToken) {
-        setLoading(true)
-        await axios
-          .get(authConfig.meEndpoint, {
-            headers: {
-              Authorization: storedToken
-            }
-          })
-          .then(async response => {
-            setLoading(false)
-            setUser({ ...response.data.userData })
-          })
-          .catch(() => {
-            localStorage.removeItem('userData')
-            localStorage.removeItem('refreshToken')
-            localStorage.removeItem('accessToken')
-            setUser(null)
-            setLoading(false)
-            if (authConfig.onTokenExpiration === 'logout' && !router.pathname.includes('login')) {
-              router.replace('/login')
-            }
-          })
-      } else {
-        setLoading(false)
-      }
-    }
+    setLoading(true)
+    const userData = { id: 1, role: 'admin', fullName: 'John Doe', username: 'johndoe', email: 'admin@materialize.com' }
+    const accessToken =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzMwMTkzNjIxLCJleHAiOjE3MzAxOTM5MjF9.Z2NkvA33kEcDMoNQz9iN5mi67cBOoKJ-LuXI5yVRDAs'
 
-    initAuth()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    window.localStorage.setItem(authConfig.storageTokenKeyName, accessToken)
+    window.localStorage.setItem('userData', JSON.stringify(userData))
+    setUser({ ...(userData as UserDataType) })
+    setLoading(false)
   }, [])
+  
   const handleLogin = (params: LoginParams, errorCallback?: ErrCallbackType) => {
     const userData = { id: 1, role: 'admin', fullName: 'John Doe', username: 'johndoe', email: 'admin@materialize.com' }
     const accessToken =

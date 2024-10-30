@@ -12,7 +12,6 @@
     "build:icons": "tsc -b src/iconify-bundle && node src/iconify-bundle/bundle-icons-react.js"
   },
   "dependencies": {
-    "framer-motion": "^11.1.7",
     "@casl/ability": "6.3.2",
     "@casl/react": "3.1.0",
     "@emotion/cache": "11.10.5",
@@ -33,6 +32,7 @@
     "@mui/x-data-grid": "5.17.9",
     "@popperjs/core": "2.11.6",
     "@reduxjs/toolkit": "1.8.6",
+    "@types/highcharts": "^7.0.0",
     "ag-charts-enterprise": "^10.3.0",
     "ag-charts-react": "^10.3.0",
     "apexcharts": "^3.53.0",
@@ -47,6 +47,9 @@
     "draft-js": "0.11.7",
     "firebase": "9.13.0",
     "fns": "^1.0.0",
+    "framer-motion": "^11.1.7",
+    "highcharts": "^11.4.8",
+    "highcharts-react-official": "^3.2.1",
     "i18next": "22.0.4",
     "i18next-browser-languagedetector": "7.0.0",
     "i18next-http-backend": "2.0.0",

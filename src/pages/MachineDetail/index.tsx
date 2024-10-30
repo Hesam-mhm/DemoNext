@@ -374,7 +374,7 @@ useEffect(() => {
                     border: theme => `1px solid ${theme.palette.divider}`
                   }}
                 >
-                  <GaugeChart value={machineData!.data!.oee!} lable='OEE'  min={0} max={100}/>
+                  <GaugeChart value={machineData!.data!.oee!} label='OEE'  min={0} max={100}/>
                 </Card>
               </Grid>
               <Grid item lg={6} xs={12}>
@@ -390,7 +390,7 @@ useEffect(() => {
                     border: theme => `1px solid ${theme.palette.divider}`
                   }}
                 >
-                  <GaugeChart value={machineData!.data!.production_quality!} lable='کیفیت تولید'  min={0} max={100}/>
+                  <GaugeChart value={machineData!.data!.production_quality!} label='کیفیت تولید'  min={0} max={100}/>
                 </Card>
               </Grid>
             </Grid>
@@ -408,7 +408,7 @@ useEffect(() => {
                     border: theme => `1px solid ${theme.palette.divider}`
                   }}
                 >
-                  <GaugeChart value={machineData!.data!.production_rate!} lable='نرخ تولید' withPercentage={false} min={0} max={100}/>
+                  <GaugeChart value={machineData!.data!.production_rate!} label='نرخ تولید' withPercentage={false} min={0} max={100}/>
                 </Card>
               </Grid>
               <Grid item lg={6} xs={12}>
@@ -424,7 +424,7 @@ useEffect(() => {
                     border: theme => `1px solid ${theme.palette.divider}`
                   }}
                 >
-                  <GaugeChart value={machineData!.data!.energy_usage!} lable='مصرف انرژی' min={0} max={100}/>
+                  <GaugeChart value={machineData!.data!.energy_usage!} label='مصرف انرژی' min={0} max={100}/>
                 </Card>
               </Grid>
             </Grid>
