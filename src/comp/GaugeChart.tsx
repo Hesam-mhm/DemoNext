@@ -7,11 +7,11 @@ type GaugeChartProps = {
   value: number
   min: number
   max: number
-  lable: string
+  label: string
   withPercentage?: boolean
 }
 
-const GaugeChart: React.FC<GaugeChartProps> = ({ value, lable, withPercentage=true, min, max }) => {
+const GaugeChart: React.FC<GaugeChartProps> = ({ value, label, withPercentage=true, min, max }) => {
     const getColorForValue = (value: number) => {
         const baseCalc=max/3
         if (value <= baseCalc) return 'red';  
@@ -25,7 +25,7 @@ const GaugeChart: React.FC<GaugeChartProps> = ({ value, lable, withPercentage=tr
     value: value,
     footnote: { text: withPercentage?`${value}%`:`${value}`, fontFamily: 'vazir', fontSize: 16, fontWeight: 'bold' },
     spacing: 0,
-    title: { text: `${lable}`, fontFamily: 'vazir', fontSize: 16, fontWeight: 'bold' },
+    title: { text: `${label}`, fontFamily: 'vazir', fontSize: 16, fontWeight: 'bold' },
     scale: {
       min: min,
       max: max,
