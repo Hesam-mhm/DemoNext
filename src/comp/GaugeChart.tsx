@@ -14,7 +14,7 @@ type GaugeChartProps = {
 const GaugeChart: React.FC<GaugeChartProps> = ({ value, lable, withPercentage=true, min, max }) => {
     const getColorForValue = (value: number) => {
         const baseCalc=max/3
-        if (value <= baseCalc) return 'red';
+        if (value <= baseCalc) return 'red';  
         if (value <= 2*baseCalc) return 'orange';
 
         return 'green';
